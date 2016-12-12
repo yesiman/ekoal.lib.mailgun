@@ -23,7 +23,7 @@ namespace ekoal.lib.mailgun
             RestClient client = new RestClient();
             client.BaseUrl = new Uri("https://api.mailgun.net/v3");
             client.Authenticator =
-                    new HttpBasicAuthenticator("api", ConfigurationManager.AppSettings.Get("mg.apikey"));
+                    new HttpBasicAuthenticator("api", "key-xxxxxxxxxxxxxxxxxxx");
             return client;
         }
         //
