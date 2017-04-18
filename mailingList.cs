@@ -23,7 +23,7 @@ namespace ekoal.lib.mailgun
             RestClient client = new RestClient();
             client.BaseUrl = new Uri("https://api.mailgun.net/v3");
             client.Authenticator =
-                    new HttpBasicAuthenticator("api", "key-xxxxxxxxxxxxxxxxxxx");
+                    new HttpBasicAuthenticator("api", ConfigurationManager.AppSettings.Get("mg.akey"));
             return client;
         }
         //
@@ -46,6 +46,10 @@ namespace ekoal.lib.mailgun
         public static IRestResponse addListMember(String email)
         {
             String list = ConfigurationManager.AppSettings.Get("mg.list");
+            return addListMember(email,list);
+        }
+        public static IRestResponse addListMember(String email, String list)
+        {
             RestClient client = getRestClient();
             RestRequest request = new RestRequest();
             request.Resource = "lists/{list}/members";
@@ -58,6 +62,10 @@ namespace ekoal.lib.mailgun
         public static IRestResponse removeListMember(String email)
         {
             String list = ConfigurationManager.AppSettings.Get("mg.list");
+            return removeListMember(email,list);
+        }
+        public static IRestResponse removeListMember(String email, String list)
+        {
             RestClient client = getRestClient();
             RestRequest request = new RestRequest();
             request.Resource = "lists/{list}/members/{member}";
