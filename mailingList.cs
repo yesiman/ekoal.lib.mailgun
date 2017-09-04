@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.IO;
 using System.Threading.Tasks;
 using RestSharp;
@@ -82,6 +83,7 @@ namespace ekoal.lib.mailgun
             String domain = ConfigurationManager.AppSettings.Get("mg.domain");
             RestClient client = getRestClient();
             RestRequest request = new RestRequest();
+
             request.AddParameter("domain",
                                  domain, ParameterType.UrlSegment);
             request.Resource = "{domain}/messages";
@@ -89,10 +91,27 @@ namespace ekoal.lib.mailgun
             request.AddParameter("to", to);
             request.AddParameter("subject", subj);
             request.AddParameter("html", body);
-            request.AddFile("attachment", attachPath);
-            //request.AddFile("attachment", Path.Combine("files", "test.txt"));
+            FileInfo fi = null;
+            var name = "";
+            if (attachPath.Trim() != "")
+            {
+                fi = new FileInfo(attachPath);
+                name = (subj.Trim() != "" ? subj + fi.Extension : fi.Name + fi.Extension);
+                name = name.Replace("é", "e");
+                name = name.Replace("è", "e");
+                name = Regex.Replace(name.Trim(), "[^A-Za-z0-9_. ]+", "");
+                name = name.Replace(" ", "-");
+                File.Copy(attachPath, fi.DirectoryName + "\\" + name);
+                request.AddFile("attachment", fi.DirectoryName + "\\" + name);
+            }
             request.Method = Method.POST;
             IRestResponse irr = client.Execute(request);
+
+            if (attachPath.Trim() != "")
+            {
+                File.Delete(fi.DirectoryName + "\\" + name);
+            }
+            
             return irr;
         }
     }

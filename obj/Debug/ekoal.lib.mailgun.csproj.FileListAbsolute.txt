@@ -7,7 +7,6 @@ D:\_DEV\__CURRENT\ekoal.lib.mailgun\ekoal.lib.mailgun\obj\Debug\ekoal.lib.mailgu
 D:\_DEV\__CURRENT\ekoal.lib.mailgun\ekoal.lib.mailgun\obj\Debug\ekoal.lib.mailgun.pdb
 D:\_DEV\__CURRENT\ekoal.lib.mailgun\bin\Debug\ekoal.lib.mailgun.dll
 D:\_DEV\__CURRENT\ekoal.lib.mailgun\bin\Debug\ekoal.lib.mailgun.pdb
-D:\_DEV\__CURRENT\ekoal.lib.mailgun\bin\Debug\RestSharp.xml
 D:\_DEV\__CURRENT\ekoal.lib.mailgun\obj\Debug\ekoal.lib.mailgun.csprojResolveAssemblyReference.cache
 D:\_DEV\__CURRENT\ekoal.lib.mailgun\obj\Debug\ekoal.lib.mailgun.dll
 D:\_DEV\__CURRENT\ekoal.lib.mailgun\obj\Debug\ekoal.lib.mailgun.pdb
